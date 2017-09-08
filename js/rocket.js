@@ -6,11 +6,13 @@ var changeState = function(state) {
 	clear();
 	
 	if (state == 1){
-		document.getElementById("ground").style.background = "url('img/ground.png')";
+		document.getElementById("rocket").style.backgroundImage = "url('img/rocket-state1.png')";
+		document.getElementById("ground").style.backgroundImage = "url('img/ground.png')";
 	}
 	else if (state == 2){
+		document.getElementById("rocket").style.backgroundImage = "url('img/rocket-state3.gif')";
 		var randomNumber = Math.round(Math.random()*10);
-		document.getElementById("ground").style.background = "url('img/ground-stage2.gif#" + randomNumber + "')";
+		document.getElementById("ground").style.backgroundImage = "url('img/ground-stage2.gif#" + randomNumber + "')";
 		timer = setInterval(function() {
 			countdownNumber--;
 			document.getElementById('countdown').innerHTML = countdownNumber;
@@ -25,7 +27,7 @@ var changeState = function(state) {
 			var randomNumber = Math.round(Math.random()*10);
 			
 			// success
-			if (randomNumber < 6) {
+			if (randomNumber < 1) {
 				changeState(4);
 			}
 			else {
@@ -33,12 +35,19 @@ var changeState = function(state) {
 			}
 		}, 2200);
 		var changeSmoke = setTimeout(function() {
-			document.getElementById("ground").style.background = "url('img/ground.png')";
+			document.getElementById("ground").style.backgroundImage = "url('img/ground.png')";
 		}, 800);
 	}
 	else if (state == 5){
+		var randomNumber = Math.round(Math.random()*10);
+		document.getElementById("rocket").style.backgroundImage = "url('img/explosion.gif#" + randomNumber + "')";
+		document.getElementById("rocket").style.marginLeft = "-108px";
+		document.getElementById("rocket").style.marginBottom = "-115px";
 		var explode = setTimeout(function() {
-			document.getElementById('rocket').className = 'rocket burning';
+			var randomNumber2 = Math.round(Math.random()*10);
+			document.getElementById("rocket").style.backgroundImage = "url('img/fire.gif#" + randomNumber2 + "')";
+			document.getElementById("rocket").style.marginLeft = "-43px";
+			document.getElementById("rocket").style.marginBottom = "-84px";
 		}, 560);
 	}
 }
