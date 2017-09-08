@@ -1,5 +1,6 @@
 var timer = null;
 var countdownNumber = 10;
+var imageCount = 0;
 
 var changeState = function(state) {
 	document.body.className = 'body-state' + state;
@@ -11,8 +12,7 @@ var changeState = function(state) {
 	}
 	else if (state == 2){
 		document.getElementById("rocket").style.backgroundImage = "url('img/rocket-state3.gif')";
-		var randomNumber = Math.round(Math.random()*10);
-		document.getElementById("ground").style.backgroundImage = "url('img/ground-stage2.gif#" + randomNumber + "')";
+		document.getElementById("ground").style.backgroundImage = "url('img/ground-stage2.gif#" + imageCount + "')";
 		timer = setInterval(function() {
 			countdownNumber--;
 			document.getElementById('countdown').innerHTML = countdownNumber;
@@ -39,13 +39,11 @@ var changeState = function(state) {
 		}, 800);
 	}
 	else if (state == 5){
-		var randomNumber = Math.round(Math.random()*10);
-		document.getElementById("rocket").style.backgroundImage = "url('img/explosion.gif#" + randomNumber + "')";
+		document.getElementById("rocket").style.backgroundImage = "url('img/explosion.gif#" + imageCount + "')";
 		document.getElementById("rocket").style.marginLeft = "-108px";
 		document.getElementById("rocket").style.marginBottom = "-115px";
 		var explode = setTimeout(function() {
-			var randomNumber2 = Math.round(Math.random()*10);
-			document.getElementById("rocket").style.backgroundImage = "url('img/fire.gif#" + randomNumber2 + "')";
+			document.getElementById("rocket").style.backgroundImage = "url('img/fire.gif#" + imageCount + "')";
 			document.getElementById("rocket").style.marginLeft = "-43px";
 			document.getElementById("rocket").style.marginBottom = "-84px";
 		}, 560);
@@ -57,11 +55,9 @@ var clear = function() {
 	countdownNumber = 10;
 	document.getElementById('countdown').innerHTML = countdownNumber;
 	document.getElementById('rocket').className = 'rocket';
+	imageCount++;
+	console.log(imageCount);
 }
-
-var resetHelperImages = {};
-
-function restartAnimation(elem) {
   elem = $(elem);
   for (var i = 0; i < elem.length; i++) {
     var element = elem[i];
